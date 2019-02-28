@@ -1,5 +1,11 @@
 {
   "elastic": {
     "host": "http://209.97.128.50:9200"
+  },
+  "db": {
+    "host": "localhost",
+    "database": "amr_atlas",
+    "user": "dan",
+    "password": ""
   }
 }
