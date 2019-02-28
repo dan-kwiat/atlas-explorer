@@ -1,15 +1,14 @@
 const Knex = require('knex')
 const { Model } = require('objection')
-const config = require('../config')
 
 const knex = Knex({
   client: 'pg',
   // useNullAsDefault: true,
   connection: {
-    host : config.db.host,
-    database : config.db.database,
-    user : config.db.user,
-    password : config.db.password,
+    host : process.env.DB_HOST,
+    database : process.env.DB_NAME,
+    user : process.env.DB_USER,
+    password : process.env.DB_PASSWORD,
   },
   pool: { min: 2, max: 10, },
   acquireConnectionTimeout: 10000,
