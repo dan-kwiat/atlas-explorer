@@ -2,7 +2,11 @@ const { StudyIsolate, knex } = require('../../../../models')
 const log = require('../../../../logger')
 const applyFilters = require('../filter')
 
-async function aggregateIsolatesByBug(filters) {
+const numerator = includeIntermediate => {
+  return includeIntermediate ? '(num_resistant + num_intermediate)' : 'num_resistant'
+}
+
+async function aggregateIsolatesByBug(filters, { includeIntermediate }) {
   try {
     const results = await applyFilters(filters)(
       StudyIsolate
@@ -10,10 +14,10 @@ async function aggregateIsolatesByBug(filters) {
       .select(
         'species',
         knex.raw(`COUNT(id) as count`),
-        knex.raw(`AVG(num_resistant::float/num_drug_tests::float) as resistance_mean`),
-        knex.raw(`MIN(num_resistant::float/num_drug_tests::float) as resistance_min`),
-        knex.raw(`MAX(num_resistant::float/num_drug_tests::float) as resistance_max`),
-        knex.raw(`STDDEV_SAMP(num_resistant::float/num_drug_tests::float) as resistance_std`)
+        knex.raw(`AVG(${numerator(includeIntermediate)}::float/num_drug_tests::float) as resistance_mean`),
+        knex.raw(`MIN(${numerator(includeIntermediate)}::float/num_drug_tests::float) as resistance_min`),
+        knex.raw(`MAX(${numerator(includeIntermediate)}::float/num_drug_tests::float) as resistance_max`),
+        knex.raw(`STDDEV_SAMP(${numerator(includeIntermediate)}::float/num_drug_tests::float) as resistance_std`)
       )
       .groupBy('species')
       .orderBy([{ column: 'resistance_mean', order: 'desc' }])

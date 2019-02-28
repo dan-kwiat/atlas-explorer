@@ -27,7 +27,7 @@ const typeDefs = `
   }
 
   type IsolateAggregate {
-    bug: IsolateAggregateByBug
+    bug(includeIntermediate: Boolean = false): IsolateAggregateByBug
   }
 
   type Isolate {

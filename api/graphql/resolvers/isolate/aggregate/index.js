@@ -1,7 +1,7 @@
 const bug = require('./bug')
 
 const aggregate = filters => ({
-  bug: () => bug(filters),
+  bug: (args) => bug(filters, args),
 })
 
 module.exports = aggregate

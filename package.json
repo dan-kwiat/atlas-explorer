@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:4000",
   "dependencies": {
+    "@material/react-checkbox": "^0.10.0",
     "@material/react-chips": "^0.8.0",
     "@material/react-drawer": "^0.8.0",
     "@material/react-layout-grid": "^0.8.0",

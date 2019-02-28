@@ -63,10 +63,10 @@ const BugResistance = ({ data }) => {
           }))}
           style={{
             q1: {
-              fill: x => darken(0.3*Math.log(x.count)/Math.log(maxCount), 'darkseagreen'),
+              fill: x => darken(0.3*Math.log(x.count)/Math.log(maxCount), 'palevioletred'),
             },
             q3: {
-              fill: x => darken(0.3*Math.log(x.count)/Math.log(maxCount), 'darkseagreen'),
+              fill: x => darken(0.3*Math.log(x.count)/Math.log(maxCount), 'palevioletred'),
             }
           }}
         />
