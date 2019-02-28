@@ -1,7 +1,10 @@
-const rootValue = require('./rootValue')
-const schema = require('./schema')
+const { makeExecutableSchema } = require('graphql-tools')
+const resolvers = require('./resolvers')
+const typeDefs = require('./type-defs')
 
-module.exports = {
-  rootValue,
-  schema,
-}
+const schema = makeExecutableSchema({
+  resolvers,
+  typeDefs,
+})
+
+module.exports = schema

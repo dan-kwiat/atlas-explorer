@@ -1,7 +1,4 @@
-var { buildSchema } = require('graphql');
-
-// Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
+const typeDefs = `
   type Drug {
     id: Int
     name: String
@@ -74,6 +71,6 @@ var schema = buildSchema(`
     aggIsolates(ids: [Int], countries: [String], species: [String], orgGroups: [String]): AggIsolate
     getFilters(searchText: String): [Filter]
   }
-`)
+`
 
-module.exports = schema
+module.exports = typeDefs
