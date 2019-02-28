@@ -11,7 +11,7 @@ const typeDefs = `
   }
 
   type IsolateAggregateByBugBucket {
-    id: ID
+    key: String
     name: String
     count: Int
     resistance: Stats

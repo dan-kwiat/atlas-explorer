@@ -21,7 +21,7 @@ async function aggregateIsolatesByBug(filters) {
 
     return {
       buckets: results.map(x => ({
-        id: x.species,
+        key: x.species,
         name: x.species,
         count: x.count,
         resistance: {
