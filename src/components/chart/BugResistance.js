@@ -6,14 +6,12 @@ import {
   VictoryChart,
   VictoryBoxPlot,
   VictoryAxis,
-  VictoryLabel,
 } from 'victory'
 import {
   Caption,
   Headline3,
 } from '@material/react-typography'
 import { darken } from 'polished'
-import numeral from 'numeral'
 import Checkbox from '@material/react-checkbox'
 
 const aggQuery = gql`
@@ -34,7 +32,6 @@ const aggQuery = gql`
       specialities: $specialities
       sources: $sources
     }) {
-      count
       aggregate {
         bug(includeIntermediate: $includeIntermediate) {
           buckets {
@@ -120,29 +117,24 @@ const BugResistance = ({ variables }) => {
     <div>
       <Query query={aggQuery} variables={{ ...variables, includeIntermediate }}>
       {({ data, loading, error }) => {
+        if (loading) return <h4>Loading...</h4>
+        if (error) return <h4>Ooops something went wrong, please refresh.</h4>
         return (
-          <div style={{ opacity: loading ? 0.5 : 1, maxWidth: '600px' }}>
-            {loading ? <h4>Loading...</h4> : null}
-            {(loading || error) ? null : <h4>Found {numeral(data.isolate.count).format('0,0')} Isolates</h4>}
-            {error && <h4>Ooops something went wrong, please refresh.</h4>}
-            {(loading || error) ? null : (
-              <React.Fragment>
-                <Headline3>Bug Resistance</Headline3>
-                <Caption>
-                  <p>The resistance of an isolate is defined as the proportion of drugs tested on that isolate which were ineffective.</p>
-                  <p>The box plots represent the mean, standard deviation & range of resistance across isolates with the same bug.  The darker the standard deviation box, the larger the sample size.</p>
-                </Caption>
-                <Checkbox
-                  nativeControlId='include-intermediate-checkbox'
-                  checked={includeIntermediate}
-                  onChange={(e) => setIncludeIntermediate(e.target.checked)}
-                />
-                <label htmlFor='include-intermediate-checkbox'><Caption>include intermediate outcomes in definition of resistance.</Caption></label>
-                <BugResistanceBoxPlot
-                  data={data.isolate.aggregate.bug.buckets}
-                />
-              </React.Fragment>
-            )}
+          <div style={{ maxWidth: '600px' }}>
+            <Headline3>Bug Resistance</Headline3>
+            <Caption>
+              <p>The resistance of an isolate is defined as the proportion of drugs tested on that isolate which were ineffective.</p>
+              <p>The box plots represent the mean, standard deviation & range of resistance across isolates with the same bug.  The darker the standard deviation box, the larger the sample size.</p>
+            </Caption>
+            <Checkbox
+              nativeControlId='include-intermediate-checkbox'
+              checked={includeIntermediate}
+              onChange={(e) => setIncludeIntermediate(e.target.checked)}
+            />
+            <label htmlFor='include-intermediate-checkbox'><Caption>include intermediate outcomes in definition of resistance.</Caption></label>
+            <BugResistanceBoxPlot
+              data={data.isolate.aggregate.bug.buckets}
+            />
           </div>
         )
       }}
