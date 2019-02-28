@@ -101,6 +101,7 @@ const BugResistanceBoxPlot = ({ data }) => {
       <VictoryAxis
         tickValues={[0.0, 0.2, 0.4, 0.6, 0.8, 1.0]}
         orientation="top"
+        label="Isolate Resistance"
         style={{
           ticks: { stroke: "grey", size: 5 },
           tickLabels: { fontSize: 12, padding: 5 },
