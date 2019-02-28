@@ -43,7 +43,10 @@ body {
 }
 
 .countries-filter {
-  @include mdc-chip-fill-color-accessible(green);
+  @include mdc-chip-fill-color-accessible(darkseagreen);
+}
+.species-filter {
+  @include mdc-chip-fill-color-accessible(palevioletred);
 }
 .mdc-chip__text {
   overflow: hidden;

@@ -7,7 +7,7 @@ import MaterialIcon from '@material/react-material-icon'
 
 const filterTypes = [
   {
-    id: 'bug',
+    id: 'species',
     icon: <MaterialIcon icon='bug_report' />,
     staticValues: species,
   },
@@ -26,6 +26,7 @@ const Filter = ({ onSelect }) => {
       inputValue={inputValue}
       onInputValueChange={setInputValue}
       onSelect={onSelect}
+      showPrefix={false}
     />
   )
 }

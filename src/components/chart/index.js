@@ -10,8 +10,8 @@ import numeral from 'numeral'
 // import { Cell, Grid, Row } from '@material/react-layout-grid'
 
 const aggQuery = gql`
-  query aggIsolates($countries: [String]!) {
-    isolate(filters: { countries: $countries }) {
+  query aggIsolates($countries: [String], $species: [String]) {
+    isolate(filters: { countries: $countries, species: $species }) {
       count
       aggregate {
         bug {
@@ -35,7 +35,6 @@ const aggQuery = gql`
 const Charts = ({ variables }) => (
   <Query query={aggQuery} variables={variables}>
   {({ data, loading, error }) => {
-    console.log(data && data.isolate && data.isolate.aggregate.bug.buckets[1])
     return (
       <div style={{ opacity: loading ? 0.5 : 1, maxWidth: '600px' }}>
         {loading ? <h4>Loading...</h4> : null}

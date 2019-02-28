@@ -5,6 +5,7 @@ import './App.scss'
 
 const defaultFilters = {
   countries: [],
+  species: [],
 }
 
 const AppLayout = () => {
