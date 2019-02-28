@@ -24,7 +24,7 @@ async function aggregateIsolatesResistance(filters, { groupBy, includeIntermedia
     )
 
     return {
-      buckets: results.map(x => ({
+      buckets: results.filter(x => x[groupBy]).map(x => ({
         key: x[groupBy],
         name: x[groupBy],
         count: x.count,
