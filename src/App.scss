@@ -48,6 +48,12 @@ body {
 .species-filter {
   @include mdc-chip-fill-color-accessible(palevioletred);
 }
+.organismGroups-filter {
+  @include mdc-chip-fill-color-accessible(yellow);
+}
+.phenotypes-filter {
+  @include mdc-chip-fill-color-accessible(brown);
+}
 .mdc-chip__text {
   overflow: hidden;
   text-overflow: ellipsis;
