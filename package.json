@@ -30,8 +30,7 @@
     "build": "export SASS_PATH=./node_modules && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "now-build": "yarn build && mv build dist",
-    "deploy": "now && now alias"
+    "now-build": "yarn build && mv build dist"
   },
   "eslintConfig": {
     "extends": "react-app"
