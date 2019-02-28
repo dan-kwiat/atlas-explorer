@@ -1,9 +1,11 @@
 const { StudyIsolate, knex } = require('../../../../models')
 const log = require('../../../../logger')
+const applyFilters = require('../filter')
 
 async function aggregateIsolatesByBug(filters) {
   try {
-    let query = StudyIsolate
+    const results = await applyFilters(filters)(
+      StudyIsolate
       .query()
       .select(
         'species',
@@ -13,15 +15,9 @@ async function aggregateIsolatesByBug(filters) {
         knex.raw(`MAX(num_resistant::float/num_drug_tests::float) as resistance_max`),
         knex.raw(`STDDEV_SAMP(num_resistant::float/num_drug_tests::float) as resistance_std`)
       )
-      .where('num_drug_tests', '>', 0)
-
-    if (filters.countries) {
-      query = query.whereIn('country', filters.countries)
-    }
-
-    const results = await query
       .groupBy('species')
       .orderBy([{ column: 'resistance_mean', order: 'desc' }])
+    )
 
     return {
       buckets: results.map(x => ({
