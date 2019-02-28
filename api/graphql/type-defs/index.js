@@ -27,7 +27,10 @@ const typeDefs = `
   }
 
   type IsolateAggregate {
-    resistance(includeIntermediate: Boolean = false): IsolateAggregateResistance
+    resistance(
+      groupBy: String!
+      includeIntermediate: Boolean = false
+    ): IsolateAggregateResistance
   }
 
   type Isolate {

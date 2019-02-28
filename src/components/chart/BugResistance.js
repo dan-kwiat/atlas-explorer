@@ -23,6 +23,7 @@ const aggQuery = gql`
     $specialities: [String]
     $sources: [String]
     $includeIntermediate: Boolean
+    $groupBy: String!
   ) {
     isolate(filters: {
       countries: $countries
@@ -33,7 +34,10 @@ const aggQuery = gql`
       sources: $sources
     }) {
       aggregate {
-        resistance(includeIntermediate: $includeIntermediate) {
+        resistance(
+          includeIntermediate: $includeIntermediate
+          groupBy: $groupBy
+        ) {
           buckets {
             key
             name
@@ -112,9 +116,10 @@ BugResistanceBoxPlot.propTypes = {
 
 const BugResistance = ({ variables }) => {
   const [includeIntermediate, setIncludeIntermediate] = useState(false)
+  const [groupBy, setGroupBy] = useState('species')
   return (
     <div>
-      <Query query={aggQuery} variables={{ ...variables, includeIntermediate }}>
+      <Query query={aggQuery} variables={{ ...variables, includeIntermediate, groupBy }}>
       {({ data, loading, error }) => {
         if (loading) return <h4>Loading...</h4>
         if (error) return <h4>Ooops something went wrong, please refresh.</h4>

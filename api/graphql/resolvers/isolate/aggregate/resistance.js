@@ -6,27 +6,27 @@ const numerator = includeIntermediate => {
   return includeIntermediate ? '(num_resistant + num_intermediate)' : 'num_resistant'
 }
 
-async function aggregateIsolatesResistance(filters, { includeIntermediate }) {
+async function aggregateIsolatesResistance(filters, { groupBy, includeIntermediate }) {
   try {
     const results = await applyFilters(filters)(
       StudyIsolate
       .query()
       .select(
-        'species',
+        groupBy,
         knex.raw(`COUNT(id) as count`),
         knex.raw(`AVG(${numerator(includeIntermediate)}::float/num_drug_tests::float) as resistance_mean`),
         knex.raw(`MIN(${numerator(includeIntermediate)}::float/num_drug_tests::float) as resistance_min`),
         knex.raw(`MAX(${numerator(includeIntermediate)}::float/num_drug_tests::float) as resistance_max`),
         knex.raw(`STDDEV_SAMP(${numerator(includeIntermediate)}::float/num_drug_tests::float) as resistance_std`)
       )
-      .groupBy('species')
+      .groupBy(groupBy)
       .orderBy([{ column: 'resistance_mean', order: 'desc' }])
     )
 
     return {
       buckets: results.map(x => ({
-        key: x.species,
-        name: x.species,
+        key: x[groupBy],
+        name: x[groupBy],
         count: x.count,
         resistance: {
           mean: x.resistance_mean,
