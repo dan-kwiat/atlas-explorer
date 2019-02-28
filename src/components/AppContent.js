@@ -32,6 +32,15 @@ const AppContent = ({ filters, setFilters }) => {
                     { id, label: value },
                   ]
                 })
+              case 'phenotype':
+                if (filters.phenotypes.map(x => x.id).indexOf(id) > -1) return
+                return setFilters({
+                  ...filters,
+                  phenotypes: [
+                    ...filters.phenotypes,
+                    { id, label: value },
+                  ]
+                })
               default:
                 return
             }
@@ -39,10 +48,10 @@ const AppContent = ({ filters, setFilters }) => {
         />
       </div>
       <Charts
-        variables={{
-          countries: parseFilters(filters.countries),
-          species: parseFilters(filters.species),
-        }}
+        variables={Object.keys(filters).reduce((agg, x) => ({
+          ...agg,
+          [x]: parseFilters(filters[x])
+        }), {})}
       />
     </div>
   )

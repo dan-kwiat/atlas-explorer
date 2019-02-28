@@ -2,6 +2,7 @@ const typeDefs = `
   input IsolateFilters {
     countries: [String]
     species: [String]
+    phenotypes: [String]
   }
 
   type Stats {

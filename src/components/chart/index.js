@@ -10,8 +10,8 @@ import numeral from 'numeral'
 // import { Cell, Grid, Row } from '@material/react-layout-grid'
 
 const aggQuery = gql`
-  query aggIsolates($countries: [String], $species: [String]) {
-    isolate(filters: { countries: $countries, species: $species }) {
+  query aggIsolates($countries: [String], $species: [String], $phenotypes: [String]) {
+    isolate(filters: { countries: $countries, species: $species, phenotypes: $phenotypes }) {
       count
       aggregate {
         bug {

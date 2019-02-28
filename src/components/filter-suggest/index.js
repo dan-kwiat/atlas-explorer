@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import FilterSuggest from 'filter-suggest'
 import species from './species.json'
 import countries from './countries.json'
+import phenotypes from './phenotypes.json'
 import MaterialIcon from '@material/react-material-icon'
 
 const filterTypes = [
@@ -15,6 +16,11 @@ const filterTypes = [
     id: 'country',
     icon: <MaterialIcon icon='public' />,
     staticValues: countries,
+  },
+  {
+    id: 'phenotype',
+    icon: <MaterialIcon icon='' />,
+    staticValues: phenotypes,
   },
 ]
  
