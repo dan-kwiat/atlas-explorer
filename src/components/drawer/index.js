@@ -73,6 +73,7 @@ const Drawer = ({
         filters={filters}
         setFilters={setFilters}
       />
+      <a href='/' />
     </DrawerContent>
   </DeviceAppropriateDrawer>
 )
