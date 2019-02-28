@@ -13,6 +13,17 @@ import {
 } from '@material/react-typography'
 import { darken } from 'polished'
 import Checkbox from '@material/react-checkbox'
+import Select from '@material/react-select'
+
+const GROUP_BY_OPTIONS = [
+  { value: 'country', label: 'Country', },
+  { value: 'species', label: 'Species', },
+  { value: 'organism_group', label: 'Organism Group', },
+  { value: 'phenotype', label: 'Phenotype', },
+  { value: 'speciality', label: 'Speciality', },
+  { value: 'source', label: 'Source', },
+]
+
 
 const aggQuery = gql`
   query aggIsolates(
@@ -65,7 +76,7 @@ const BugResistanceBoxPlot = ({ data }) => {
   return (
     <VictoryChart
       domainPadding={10}
-      height={Math.max(30*data.length, 300)}
+      height={Math.max(30*data.length, 500)}
       width={width}
       padding={{ left: 200, top: 100, right: 50, bottom: 50 }}
     >
@@ -88,22 +99,30 @@ const BugResistanceBoxPlot = ({ data }) => {
       <VictoryBoxPlot
         horizontal
         boxWidth={4}
-        whiskerWidth={4}
-        data={data.map((x, i) => ({
-          y: data.length - i,
-          min: x.resistance.min,
-          max: x.resistance.max,
-          q1: Math.max(0, x.resistance.mean - 0.5*x.resistance.std),
-          q3: x.resistance.mean - 0.5*x.resistance.std < 0 ? x.resistance.std : x.resistance.mean + 0.5*x.resistance.std,
-          median: x.resistance.mean,
-          count: x.count,
-        }))}
+        whiskerWidth={0}
+        data={data.map((x, i) => {
+          const q1 = Math.max(x.resistance.min, x.resistance.mean - 0.5*x.resistance.std)
+          const q3 = q1 + x.resistance.std
+          return {
+            y: data.length - i,
+            min: q1, //x.resistance.min,
+            max: q3, //x.resistance.max,
+            q1,
+            q3,
+            median: x.resistance.mean,
+            count: x.count,
+          }
+        })}
         style={{
           q1: {
             fill: x => darken(0.3*Math.log(x.count)/Math.log(maxCount), 'palevioletred'),
           },
           q3: {
             fill: x => darken(0.3*Math.log(x.count)/Math.log(maxCount), 'palevioletred'),
+          },
+          median: {
+            stroke: 'black',
+            strokeWidth: 5,
           }
         }}
       />
@@ -116,7 +135,7 @@ BugResistanceBoxPlot.propTypes = {
 
 const BugResistance = ({ variables }) => {
   const [includeIntermediate, setIncludeIntermediate] = useState(false)
-  const [groupBy, setGroupBy] = useState('species')
+  const [groupBy, setGroupBy] = useState('country')
   return (
     <div>
       <Query query={aggQuery} variables={{ ...variables, includeIntermediate, groupBy }}>
@@ -127,15 +146,21 @@ const BugResistance = ({ variables }) => {
           <div style={{ maxWidth: '600px' }}>
             <Headline3>Bug Resistance</Headline3>
             <Caption>
-              <p>The resistance of an isolate is defined as the proportion of drugs tested on that isolate which were ineffective.</p>
-              <p>The box plots represent the mean, standard deviation & range of resistance across isolates with the same bug.  The darker the standard deviation box, the larger the sample size.</p>
+              <p>The resistance of an isolate is defined as the proportion of drugs tested on it which were ineffective.</p>
+              <p>The width of the coloured range represents the standard deviation of resistance across isolates.  The darker the colour, the larger the sample size.</p>
             </Caption>
+            <Select
+              label='Group By'
+              value={groupBy}
+              onChange={(e) => setGroupBy(e.target.value)}
+              options={GROUP_BY_OPTIONS}
+            />
             <Checkbox
               nativeControlId='include-intermediate-checkbox'
               checked={includeIntermediate}
               onChange={(e) => setIncludeIntermediate(e.target.checked)}
             />
-            <label htmlFor='include-intermediate-checkbox'><Caption>include intermediate outcomes in definition of resistance.</Caption></label>
+            <label htmlFor='include-intermediate-checkbox'><Caption>include intermediate test results in definition of resistance</Caption></label>
             <BugResistanceBoxPlot
               data={data.isolate.aggregate.resistance.buckets}
             />
