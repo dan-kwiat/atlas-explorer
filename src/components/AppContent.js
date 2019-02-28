@@ -3,10 +3,6 @@ import PropTypes from 'prop-types'
 import Charts from './chart'
 import FilterSuggest from './filter-suggest'
 
-const parseFilters = items => {
-  return items.map(x => x.label)
-}
-
 const AppContent = ({ filters, setFilters }) => {
   return (
     <div className='content-container'>
@@ -75,10 +71,7 @@ const AppContent = ({ filters, setFilters }) => {
         />
       </div>
       <Charts
-        variables={Object.keys(filters).reduce((agg, x) => ({
-          ...agg,
-          [x]: parseFilters(filters[x])
-        }), {})}
+        filters={filters}
       />
     </div>
   )

@@ -2,15 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BugResistance from './BugResistance'
 
-const Charts = ({ variables }) => {
+const Charts = ({ filters }) => {
   return (
     <div>
-      <BugResistance variables={variables} />
+      <BugResistance filters={filters} />
     </div>
   )
 }
 Charts.propTypes = {
-  variables: PropTypes.object.isRequired,
+  filters: PropTypes.object.isRequired,
 }
 
 export default Charts

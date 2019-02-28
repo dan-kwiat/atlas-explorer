@@ -133,22 +133,30 @@ BugResistanceBoxPlot.propTypes = {
   data: PropTypes.array.isRequired,
 }
 
-const BugResistance = ({ variables }) => {
+const BugResistance = ({ filters }) => {
   const [includeIntermediate, setIncludeIntermediate] = useState(false)
   const [groupBy, setGroupBy] = useState('country')
+  const variables = {
+    includeIntermediate,
+    groupBy,
+    ...Object.keys(filters).reduce((agg, x) => ({
+      ...agg,
+      [x]: filters[x].map(x => x.label)
+    }), {}),
+  }
   return (
     <div>
-      <Query query={aggQuery} variables={{ ...variables, includeIntermediate, groupBy }}>
+      <Headline3>Bug Resistance</Headline3>
+      <Caption>
+        <p>The resistance of an isolate is defined as the proportion of drugs tested on it which were ineffective.</p>
+        <p>The width of each coloured box plot below represents the standard deviation of resistance across isolates.  The darker the colour, the larger the sample size.</p>
+      </Caption>
+      <Query query={aggQuery} variables={variables}>
       {({ data, loading, error }) => {
         if (loading) return <h4>Loading...</h4>
         if (error) return <h4>Ooops something went wrong, please refresh.</h4>
         return (
           <div style={{ maxWidth: '600px' }}>
-            <Headline3>Bug Resistance</Headline3>
-            <Caption>
-              <p>The resistance of an isolate is defined as the proportion of drugs tested on it which were ineffective.</p>
-              <p>The width of the coloured range represents the standard deviation of resistance across isolates.  The darker the colour, the larger the sample size.</p>
-            </Caption>
             <Select
               label='Group By'
               value={groupBy}
@@ -172,7 +180,7 @@ const BugResistance = ({ variables }) => {
   )
 }
 BugResistance.propTypes = {
-  variables: PropTypes.object.isRequired,
+  filters: PropTypes.object.isRequired,
 }
 
 export default BugResistance
