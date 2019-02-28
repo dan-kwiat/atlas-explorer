@@ -15,19 +15,19 @@ const typeDefs = `
     std: Float
   }
 
-  type IsolateAggregateByBugBucket {
+  type IsolateAggregateResistanceBucket {
     key: String
     name: String
     count: Int
     resistance: Stats
   }
 
-  type IsolateAggregateByBug {
-    buckets: [IsolateAggregateByBugBucket]
+  type IsolateAggregateResistance {
+    buckets: [IsolateAggregateResistanceBucket]
   }
 
   type IsolateAggregate {
-    bug(includeIntermediate: Boolean = false): IsolateAggregateByBug
+    resistance(includeIntermediate: Boolean = false): IsolateAggregateResistance
   }
 
   type Isolate {

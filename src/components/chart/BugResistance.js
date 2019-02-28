@@ -33,7 +33,7 @@ const aggQuery = gql`
       sources: $sources
     }) {
       aggregate {
-        bug(includeIntermediate: $includeIntermediate) {
+        resistance(includeIntermediate: $includeIntermediate) {
           buckets {
             key
             name
@@ -50,7 +50,6 @@ const aggQuery = gql`
     }
   }
 `
-
 
 const BugResistanceBoxPlot = ({ data }) => {
   const indexToNames = data.reduce((agg, x, i) => ({
@@ -133,7 +132,7 @@ const BugResistance = ({ variables }) => {
             />
             <label htmlFor='include-intermediate-checkbox'><Caption>include intermediate outcomes in definition of resistance.</Caption></label>
             <BugResistanceBoxPlot
-              data={data.isolate.aggregate.bug.buckets}
+              data={data.isolate.aggregate.resistance.buckets}
             />
           </div>
         )

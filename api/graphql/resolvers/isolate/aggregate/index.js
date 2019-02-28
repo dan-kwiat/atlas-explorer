@@ -1,7 +1,7 @@
-const bug = require('./bug')
+const resistance = require('./resistance')
 
 const aggregate = filters => ({
-  bug: (args) => bug(filters, args),
+  resistance: (args) => resistance(filters, args),
 })
 
 module.exports = aggregate

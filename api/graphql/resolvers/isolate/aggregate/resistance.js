@@ -6,7 +6,7 @@ const numerator = includeIntermediate => {
   return includeIntermediate ? '(num_resistant + num_intermediate)' : 'num_resistant'
 }
 
-async function aggregateIsolatesByBug(filters, { includeIntermediate }) {
+async function aggregateIsolatesResistance(filters, { includeIntermediate }) {
   try {
     const results = await applyFilters(filters)(
       StudyIsolate
@@ -41,4 +41,4 @@ async function aggregateIsolatesByBug(filters, { includeIntermediate }) {
   }
 }
 
-module.exports = aggregateIsolatesByBug
+module.exports = aggregateIsolatesResistance
