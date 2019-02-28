@@ -10,10 +10,12 @@ import {
 import {
   Caption,
   Headline3,
+  Subtitle1,
 } from '@material/react-typography'
 import { darken } from 'polished'
 import Checkbox from '@material/react-checkbox'
 import Select from '@material/react-select'
+import FilterSuggest from '../filter-suggest'
 
 const GROUP_BY_OPTIONS = [
   { value: 'country', label: 'Country', },
@@ -24,6 +26,14 @@ const GROUP_BY_OPTIONS = [
   { value: 'source', label: 'Source', },
 ]
 
+const FILTER_TYPES = {
+  'Country': 'countries',
+  'Species': 'species',
+  'Phenotype': 'phenotypes',
+  'Organism Group': 'organismGroups',
+  'Speciality': 'specialities',
+  'Source': 'sources',
+}
 
 const aggQuery = gql`
   query aggIsolates(
@@ -133,7 +143,7 @@ BugResistanceBoxPlot.propTypes = {
   data: PropTypes.array.isRequired,
 }
 
-const BugResistance = ({ filters }) => {
+const BugResistance = ({ filters, setFilters }) => {
   const [includeIntermediate, setIncludeIntermediate] = useState(false)
   const [groupBy, setGroupBy] = useState('country')
   const variables = {
@@ -147,28 +157,48 @@ const BugResistance = ({ filters }) => {
   return (
     <div>
       <Headline3>Bug Resistance</Headline3>
-      <Caption>
-        <p>The resistance of an isolate is defined as the proportion of drugs tested on it which were ineffective.</p>
-        <p>The width of each coloured box plot below represents the standard deviation of resistance across isolates.  The darker the colour, the larger the sample size.</p>
-      </Caption>
+      <Subtitle1>The resistance of an isolate is defined as the proportion of drugs tested on it which were ineffective.</Subtitle1>
       <Query query={aggQuery} variables={variables}>
       {({ data, loading, error }) => {
         if (loading) return <h4>Loading...</h4>
         if (error) return <h4>Ooops something went wrong, please refresh.</h4>
         return (
-          <div style={{ maxWidth: '600px' }}>
-            <Select
-              label='Group By'
-              value={groupBy}
-              onChange={(e) => setGroupBy(e.target.value)}
-              options={GROUP_BY_OPTIONS}
+          <div>
+            <FilterSuggest
+              onSelect={({ filterType, value, id }) => {
+                const filtersVariable = FILTER_TYPES[filterType]
+                if (!filtersVariable) return
+                if (filters[filtersVariable].map(x => x.id).indexOf(id) > -1) return
+                return setFilters({
+                  ...filters,
+                  [filtersVariable]: [
+                    ...filters[filtersVariable],
+                    { id, label: value },
+                  ]
+                })
+              }}
             />
-            <Checkbox
-              nativeControlId='include-intermediate-checkbox'
-              checked={includeIntermediate}
-              onChange={(e) => setIncludeIntermediate(e.target.checked)}
-            />
-            <label htmlFor='include-intermediate-checkbox'><Caption>include intermediate test results in definition of resistance</Caption></label>
+            <div style={{ marginBottom: '20px' }}>
+              <Select
+                label='Group Isolates By'
+                value={groupBy}
+                onChange={(e) => setGroupBy(e.target.value)}
+                options={GROUP_BY_OPTIONS}
+              />
+              <Checkbox
+                nativeControlId='include-intermediate-checkbox'
+                checked={includeIntermediate}
+                onChange={(e) => setIncludeIntermediate(e.target.checked)}
+              />
+              <label
+                htmlFor='include-intermediate-checkbox'
+              >
+                <Caption className='pointer'>include intermediate test results in definition of resistance</Caption>
+              </label>
+            </div>
+            <Caption>
+              The width of each coloured box plot below represents the standard deviation of resistance across isolates.  The darker the colour, the larger the sample size.
+            </Caption>
             <BugResistanceBoxPlot
               data={data.isolate.aggregate.resistance.buckets}
             />
@@ -181,6 +211,7 @@ const BugResistance = ({ filters }) => {
 }
 BugResistance.propTypes = {
   filters: PropTypes.object.isRequired,
+  setFilters: PropTypes.func.isRequired,
 }
 
 export default BugResistance
