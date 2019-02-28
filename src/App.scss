@@ -1,10 +1,8 @@
 $mdc-theme-primary: darkseagreen;
 
 @import "@material/react-drawer/index.scss";
-@import "@material/react-list/index.scss";
 @import "@material/react-top-app-bar/index.scss";
 @import "@material/react-material-icon/index.scss";
-@import "@material/react-text-field/index.scss";
 @import "@material/react-chips/index.scss";
 @import "@material/react-layout-grid/index.scss";
 @import "@material/react-typography/index.scss";
@@ -44,14 +42,8 @@ body {
   }
 }
 
-.country-filter {
+.countries-filter {
   @include mdc-chip-fill-color-accessible(green);
-}
-.species-filter {
-  @include mdc-chip-fill-color-accessible(red);
-}
-.orgGroup-filter {
-  @include mdc-chip-fill-color-accessible(blue);
 }
 .mdc-chip__text {
   overflow: hidden;

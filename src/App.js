@@ -4,9 +4,7 @@ import { TopAppBarFixedAdjust } from '@material/react-top-app-bar'
 import './App.scss'
 
 const defaultFilters = {
-  country: [],
-  species: [],
-  orgGroup: [],
+  countries: [],
 }
 
 const AppLayout = () => {

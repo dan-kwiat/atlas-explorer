@@ -894,9 +894,9 @@
     classnames "^2.2.5"
     react "^16.4.2"
 
-"@material/react-list@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@material/react-list/-/react-list-0.8.0.tgz#ac044f67f1973e7e942b8531ecc950c0b114d2b4"
+"@material/react-list@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@material/react-list/-/react-list-0.9.0.tgz#e392ec80c7a38798d1ed30c7747284818cac4998"
   dependencies:
     "@material/list" "^0.41.0"
     classnames "^2.2.5"
@@ -926,9 +926,9 @@
     classnames "^2.2.5"
     react "^16.4.2"
 
-"@material/react-text-field@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@material/react-text-field/-/react-text-field-0.8.0.tgz#91e9d7fdeca58ab9ccee99d2cff252156f1f1853"
+"@material/react-text-field@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@material/react-text-field/-/react-text-field-0.9.0.tgz#7889b466107ca162ffa17316bf9d5f33f61b644b"
   dependencies:
     "@material/react-floating-label" "^0.8.0"
     "@material/react-line-ripple" "^0.8.0"
@@ -1021,6 +1021,21 @@
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
+
+"@rmwc/base@^4.0.6":
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@rmwc/base/-/base-4.0.6.tgz#acedced29d1cb7339951a92306e20c68e92475c6"
+  dependencies:
+    classnames "^2.2.5"
+    hyperform "^0.9.9"
+    mutation-observer "^1.0.3"
+    prop-types "^15.6.1"
+
+"@rmwc/circular-progress@^4.0.6":
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@rmwc/circular-progress/-/circular-progress-4.0.6.tgz#6990001d76289616424f41553b7c36f1b32581a7"
+  dependencies:
+    "@rmwc/base" "^4.0.6"
 
 "@svgr/core@^2.4.1":
   version "2.4.1"
@@ -3165,9 +3180,9 @@ dotenv@6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
 
-downshift@^3.1.8:
-  version "3.1.8"
-  resolved "https://registry.yarnpkg.com/downshift/-/downshift-3.1.8.tgz#0f4c64efeffae1fb978139522035a2e640cb2a01"
+downshift@^3.1.13:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-3.2.6.tgz#dee518a17dfe28ab9ab38fc8261d06ee87cd4589"
   dependencies:
     "@babel/runtime" "^7.1.2"
     compute-scroll-into-view "^1.0.9"
@@ -3780,6 +3795,16 @@ fill-range@^4.0.0:
     is-number "^3.0.0"
     repeat-string "^1.6.1"
     to-regex-range "^2.1.0"
+
+filter-suggest@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/filter-suggest/-/filter-suggest-2.2.1.tgz#b6a435cde541ad02929037c1d4f4040bb6b90011"
+  dependencies:
+    "@material/react-list" "^0.9.0"
+    "@material/react-text-field" "^0.9.0"
+    "@rmwc/circular-progress" "^4.0.6"
+    downshift "^3.1.13"
+    prop-types "^15.6.2"
 
 finalhandler@1.1.1:
   version "1.1.1"
@@ -4460,6 +4485,10 @@ http-signature@~1.2.0:
 https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
+
+hyperform@^0.9.9:
+  version "0.9.22"
+  resolved "https://registry.yarnpkg.com/hyperform/-/hyperform-0.9.22.tgz#6a69e61fae9345140ad7c5c6ff406d1ce96fa631"
 
 iconv-lite@0.4.23:
   version "0.4.23"
@@ -5686,7 +5715,7 @@ loglevel@^1.4.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.6.1.tgz#e0fc95133b6ef276cdc8887cdaf24aa6f156f8fa"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   dependencies:
@@ -6023,6 +6052,10 @@ multicast-dns@^6.0.1:
   dependencies:
     dns-packet "^1.3.1"
     thunky "^1.0.2"
+
+mutation-observer@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/mutation-observer/-/mutation-observer-1.0.3.tgz#42e9222b101bca82e5ba9d5a7acf4a14c0f263d0"
 
 mute-stream@0.0.7:
   version "0.0.7"
@@ -7334,6 +7367,14 @@ prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+prop-types@^15.6.1:
+  version "15.7.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.8.1"
+
 proxy-addr@~2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.4.tgz#ecfc733bf22ff8c6f407fa275327b9ab67e48b93"
@@ -7537,6 +7578,10 @@ react-fast-compare@^2.0.0:
 react-is@^16.3.2, react-is@^16.5.2:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
+
+react-is@^16.8.1:
+  version "16.8.3"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.3.tgz#4ad8b029c2a718fc0cfc746c8d4e1b7221e5387d"
 
 react-scripts@2.1.1:
   version "2.1.1"

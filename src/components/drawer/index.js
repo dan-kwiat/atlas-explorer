@@ -7,7 +7,7 @@ import {
   DrawerContent,
 } from '@material/react-drawer'
 import DeviceAppropriateDrawer from './DeviceAppropriateDrawer'
-import { FilterChips } from '../filter'
+import FilterChips from '../filter-chips'
 
 const Drawer = ({
   isOpen,

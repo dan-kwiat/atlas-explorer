@@ -28,7 +28,7 @@ const BugResistance = ({ data }) => {
       </Caption>
       <VictoryChart
         domainPadding={10}
-        height={30*data.length}
+        height={Math.max(30*data.length, 300)}
         width={width}
         padding={{ left: 200, top: 100, right: 50, bottom: 50 }}
       >

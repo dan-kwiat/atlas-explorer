@@ -4,23 +4,23 @@ import MaterialIcon from '@material/react-material-icon'
 
 const FilterChips = ({ filters, setFilters }) => (
   <div>
-    {Object.keys(filters).map(filterType => (
+    {Object.keys(filters).map(filterName => (
       <ChipSet
-        key={`chipset-${filterType}`}
+        key={`chipset-${filterName}`}
         input
         updateChips={filterChips => {
           setFilters({
             ...filters,
-            [filterType]: filterChips,
+            [filterName]: filterChips,
           })
         }}
       >
-        {filters[filterType].map(({ id, label }) =>
+        {filters[filterName].map(({ id, label }) =>
           <Chip
             id={id}
             key={id}
             label={label}
-            className={`${filterType}-filter`}
+            className={`${filterName}-filter`}
             removeIcon={<MaterialIcon icon='cancel' />}
             title={label}
           />

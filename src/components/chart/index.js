@@ -16,7 +16,7 @@ const aggQuery = gql`
       aggregate {
         bug {
           buckets {
-            id
+            key
             name
             count
             resistance {
@@ -35,6 +35,7 @@ const aggQuery = gql`
 const Charts = ({ variables }) => (
   <Query query={aggQuery} variables={variables}>
   {({ data, loading, error }) => {
+    console.log(data && data.isolate && data.isolate.aggregate.bug.buckets[1])
     return (
       <div style={{ opacity: loading ? 0.5 : 1, maxWidth: '600px' }}>
         {loading ? <h4>Loading...</h4> : null}
