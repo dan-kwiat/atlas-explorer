@@ -1,9 +1,10 @@
 const aggFieldsMap = require('./aggFieldsMap')
 const { esClient } = require('../../connection')
+const log = require('../../logger')
 
 const resolvers = {
   Query: {
-    getFilters: function({ searchText }) {
+    getFilters: function(_, { searchText }) {
       const searchParams = {
         index: ['amr-atlas-filters'],
         _source: ['name', 'suggest', 'filterType'],
@@ -53,7 +54,7 @@ const resolvers = {
     //     return res.hits.hits.map(x => x._source)
     //   })
     // },
-    getIsolates: function ({ids, countries}) {
+    getIsolates: function (_, {ids, countries}) {
       const searchParams = {
         index: 'amr-atlas',
         // _source: ['Isolate_Id', 'Country'],
@@ -87,7 +88,7 @@ const resolvers = {
         return res.hits.hits.map(x => x._source)
       })
     },
-    aggIsolates: function ({ids, countries, species, orgGroups}) {
+    aggIsolates: function (_, {ids, countries, species, orgGroups}) {
       const searchParams = {
         index: 'amr-atlas',
         size: 0,
