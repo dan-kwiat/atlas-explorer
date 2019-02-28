@@ -2,7 +2,7 @@
   "name": "atlas-explorer",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://atlas-explorer.now.sh",
+  "proxy": "http://localhost:4000",
   "dependencies": {
     "@material/react-chips": "^0.8.0",
     "@material/react-drawer": "^0.8.0",
