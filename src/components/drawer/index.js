@@ -7,31 +7,39 @@ import {
   DrawerContent,
 } from '@material/react-drawer'
 import DeviceAppropriateDrawer from './DeviceAppropriateDrawer'
-import DrawerList from './DrawerList'
+import { FilterChips } from '../filter'
 
-const Drawer = props => (
-  <DeviceAppropriateDrawer {...props}>
+const Drawer = ({
+  isOpen,
+  setIsDrawerOpen,
+  filters,
+  setFilters,
+}) => (
+  <DeviceAppropriateDrawer
+    isOpen={isOpen}
+    setIsDrawerOpen={setIsDrawerOpen}
+  >
     <DrawerHeader>
       <DrawerTitle>
-        Drawer Title
+        Filters
       </DrawerTitle>
       <DrawerSubtitle>
-        Drawer Subtitle
+        {Object.keys(filters).reduce((agg, x) => (agg + filters[x].length), 0)} filters applied
       </DrawerSubtitle>
     </DrawerHeader>
     <DrawerContent>
-      <DrawerList
-        onItemClick={() => {
-          props.setIsDrawerOpen && props.setIsDrawerOpen(false)
-        }}
+      <FilterChips
+        filters={filters}
+        setFilters={setFilters}
       />
-      <a href='/'>test link</a>
     </DrawerContent>
   </DeviceAppropriateDrawer>
 )
 Drawer.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setIsDrawerOpen: PropTypes.func.isRequired,
+  filters: PropTypes.object.isRequired,
+  setFilters: PropTypes.func.isRequired,
 }
 
 export default Drawer

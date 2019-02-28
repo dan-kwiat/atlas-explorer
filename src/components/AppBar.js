@@ -5,7 +5,7 @@ import MaterialIcon from '@material/react-material-icon'
 
 const renderDrawerIcon = onClick => (
   <MaterialIcon
-    icon='menu'
+    icon='filter_list'
     onClick={onClick}
   />
 )
@@ -14,12 +14,12 @@ const AppBar = ({ setIsDrawerOpen }) => (
   <>
     <TopAppBar
       className='mobile-appbar'
-      title='Title'
+      title='Atlas Explorer'
       navigationIcon={renderDrawerIcon(() => setIsDrawerOpen(true))}
     />
     <TopAppBar
       className='desktop-appbar'
-      title='Title'
+      title='Atlas Explorer'
       fixed
     />
   </>

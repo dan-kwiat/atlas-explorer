@@ -4,6 +4,9 @@ $mdc-theme-primary: darkseagreen;
 @import "@material/react-list/index.scss";
 @import "@material/react-top-app-bar/index.scss";
 @import "@material/react-material-icon/index.scss";
+@import "@material/react-text-field/index.scss";
+@import "@material/react-chips/index.scss";
+@import "@material/react-layout-grid/index.scss";
 
 body {
   color: rgba(0,0,0,.84);
@@ -40,9 +43,44 @@ body {
   }
 }
 
+.country-filter {
+  @include mdc-chip-fill-color-accessible(green);
+}
+.species-filter {
+  @include mdc-chip-fill-color-accessible(red);
+}
+.orgGroup-filter {
+  @include mdc-chip-fill-color-accessible(blue);
+}
+.mdc-chip__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .content-container {
   padding: 20px;
   max-width: 720px;
   box-sizing: border-box;
   margin: 0 auto;
+}
+
+.filter-menu {
+  padding: 0px;
+  margin-top: 0px;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  max-height: 20rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  outline: 0px;
+  border-radius: 0px 0px .28571429rem .28571429rem;
+  box-shadow: 0px 2px 3px 0px rgba(34,36,38,.15);
+  box-sizing: border-box;
+  border-color: $mdc-theme-primary;
+  border-top-width: 0px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-style: solid;
 }
