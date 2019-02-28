@@ -9,6 +9,9 @@ const filter = filters => query => {
   if (filters.species && filters.species.length) {
     filteredQuery = filteredQuery.whereIn('species', filters.species)
   }
+  if (filters.organismGroups && filters.organismGroups.length) {
+    filteredQuery = filteredQuery.whereIn('organism_group', filters.organismGroups)
+  }
   if (filters.phenotypes && filters.phenotypes.length) {
     filteredQuery = filteredQuery.whereIn('phenotype', filters.phenotypes)
   }

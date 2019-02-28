@@ -14,7 +14,7 @@ const AppContent = ({ filters, setFilters }) => {
         <FilterSuggest
           onSelect={({ filterType, value, id }) => {
             switch (filterType) {
-              case 'country':
+              case 'Country':
                 if (filters.countries.map(x => x.id).indexOf(id) > -1) return
                 return setFilters({
                   ...filters,
@@ -23,7 +23,7 @@ const AppContent = ({ filters, setFilters }) => {
                     { id, label: value },
                   ]
                 })
-              case 'species':
+              case 'Species':
                 if (filters.species.map(x => x.id).indexOf(id) > -1) return
                 return setFilters({
                   ...filters,
@@ -32,12 +32,21 @@ const AppContent = ({ filters, setFilters }) => {
                     { id, label: value },
                   ]
                 })
-              case 'phenotype':
+              case 'Phenotype':
                 if (filters.phenotypes.map(x => x.id).indexOf(id) > -1) return
                 return setFilters({
                   ...filters,
                   phenotypes: [
                     ...filters.phenotypes,
+                    { id, label: value },
+                  ]
+                })
+              case 'Organism Group':
+                if (filters.organismGroups.map(x => x.id).indexOf(id) > -1) return
+                return setFilters({
+                  ...filters,
+                  organismGroups: [
+                    ...filters.organismGroups,
                     { id, label: value },
                   ]
                 })

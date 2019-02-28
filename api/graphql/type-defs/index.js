@@ -3,6 +3,7 @@ const typeDefs = `
     countries: [String]
     species: [String]
     phenotypes: [String]
+    organismGroups: [String]
   }
 
   type Stats {

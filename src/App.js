@@ -7,6 +7,7 @@ const defaultFilters = {
   countries: [],
   species: [],
   phenotypes: [],
+  organismGroups: [],
 }
 
 const AppLayout = () => {
