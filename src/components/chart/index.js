@@ -15,12 +15,16 @@ const aggQuery = gql`
     $species: [String]
     $phenotypes: [String]
     $organismGroups: [String]
+    $specialities: [String]
+    $sources: [String]
   ) {
     isolate(filters: {
       countries: $countries
       species: $species
       phenotypes: $phenotypes
       organismGroups: $organismGroups
+      specialities: $specialities
+      sources: $sources
     }) {
       count
       aggregate {

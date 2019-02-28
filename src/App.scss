@@ -54,6 +54,12 @@ body {
 .phenotypes-filter {
   @include mdc-chip-fill-color-accessible(brown);
 }
+.specialities-filter {
+  @include mdc-chip-fill-color-accessible(gray);
+}
+.sources-filter {
+  @include mdc-chip-fill-color-accessible(purple);
+}
 .mdc-chip__text {
   overflow: hidden;
   text-overflow: ellipsis;

@@ -8,6 +8,8 @@ const defaultFilters = {
   species: [],
   phenotypes: [],
   organismGroups: [],
+  specialities: [],
+  sources: [],
 }
 
 const AppLayout = () => {

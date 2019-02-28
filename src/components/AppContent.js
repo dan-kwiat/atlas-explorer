@@ -50,6 +50,24 @@ const AppContent = ({ filters, setFilters }) => {
                     { id, label: value },
                   ]
                 })
+              case 'Speciality':
+                if (filters.specialities.map(x => x.id).indexOf(id) > -1) return
+                return setFilters({
+                  ...filters,
+                  specialities: [
+                    ...filters.specialities,
+                    { id, label: value },
+                  ]
+                })
+              case 'Source':
+                if (filters.sources.map(x => x.id).indexOf(id) > -1) return
+                return setFilters({
+                  ...filters,
+                  sources: [
+                    ...filters.sources,
+                    { id, label: value },
+                  ]
+                })
               default:
                 return
             }

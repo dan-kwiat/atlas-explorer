@@ -4,6 +4,8 @@ const typeDefs = `
     species: [String]
     phenotypes: [String]
     organismGroups: [String]
+    specialities: [String]
+    sources: [String]
   }
 
   type Stats {

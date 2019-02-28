@@ -15,6 +15,12 @@ const filter = filters => query => {
   if (filters.phenotypes && filters.phenotypes.length) {
     filteredQuery = filteredQuery.whereIn('phenotype', filters.phenotypes)
   }
+  if (filters.specialities && filters.specialities.length) {
+    filteredQuery = filteredQuery.whereIn('speciality', filters.specialities)
+  }
+  if (filters.sources && filters.sources.length) {
+    filteredQuery = filteredQuery.whereIn('source', filters.sources)
+  }
   return filteredQuery
 }
 
