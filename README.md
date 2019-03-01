@@ -1,3 +1,3 @@
-# Material React Template
+# ATLAS Explorer
 
-[Demo](https://dan-kwiat.github.io/material-react-template/)
+Live Prototype: [wellcome.worthwhile.app](https://wellcome.worthwhile.app/)
