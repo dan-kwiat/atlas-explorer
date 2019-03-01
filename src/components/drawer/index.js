@@ -63,7 +63,7 @@ const Drawer = ({
         {({ data, loading, error }) => {
           if (error) return <Body2>Hmmm...</Body2>
           if (loading) return <Body2>Loading...</Body2>
-          return <Body2>{numeral(data.isolate.count).format('0,0')} Isolates</Body2>
+          return <Body2>{numeral(data.isolate.count).format('0,0')} isolates found</Body2>
         }}
         </Query>
       </DrawerSubtitle>
