@@ -14,12 +14,12 @@ const AppBar = ({ setIsDrawerOpen }) => (
   <>
     <TopAppBar
       className='mobile-appbar'
-      title='Atlas Explorer'
+      title='ATLAS Explorer'
       navigationIcon={renderDrawerIcon(() => setIsDrawerOpen(true))}
     />
     <TopAppBar
       className='desktop-appbar'
-      title='Atlas Explorer'
+      title='ATLAS Explorer'
       fixed
     />
   </>
