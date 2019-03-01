@@ -1,9 +1,9 @@
 {
-  "short_name": "Atlas Explorer",
-  "name": "Antimicrobial resistance data explorer",
+  "short_name": "ATLAS Explorer",
+  "name": "Exploring antimicrobial resistance surveillance data",
   "icons": [],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "darkseagreen",
+  "theme_color": "#8fbc8f",
   "background_color": "#ffffff"
 }
