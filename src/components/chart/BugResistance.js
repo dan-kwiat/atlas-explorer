@@ -99,12 +99,21 @@ const BugResistanceBoxPlot = ({ data }) => {
         }}
       />
       <VictoryAxis
-        tickValues={[0.0, 0.2, 0.4, 0.6, 0.8, 1.0]}
+        tickFormat={x => x*10%2 === 0 ? `${x*100}%` : null}
+        tickValues={[...new Array(10 + 1)].map((_, i) => i/10)}
         orientation="top"
         label="Isolate Resistance"
         style={{
-          ticks: { stroke: "grey", size: 5 },
+          ticks: {
+            stroke: "grey",
+            strokeWidth: 1,
+            size: 5,
+          },
           tickLabels: { fontSize: 12, padding: 5 },
+          grid: {
+            stroke: "#ddd",
+            strokeWidth: 1,
+          },
         }}
       />
       <VictoryBoxPlot
